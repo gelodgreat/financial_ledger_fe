@@ -79,52 +79,6 @@ module.exports = (plop) => {
             },
         ],
     });
-    plop.setGenerator('smart module', {
-        description: 'Create a smart module component',
-        prompts: [
-            {
-                type: 'input',
-                name: 'name',
-                message: 'What is your smart module component name?',
-            },
-        ],
-        actions: [
-            {
-                type: 'add',
-                path: 'src/components/module/{{pascalCase name}}/index.tsx',
-                templateFile: 'plop-templates/smart-module/index.tsx.hbs',
-            },
-            {
-                type: 'add',
-                path:
-                    'src/components/module/{{pascalCase name}}/{{pascalCase name}}.props.ts',
-                templateFile: 'plop-templates/smart-module/module.props.ts.hbs',
-            },
-            {
-                type: 'add',
-                path:
-                    'src/components/module/{{pascalCase name}}/{{pascalCase name}}.style.ts',
-                templateFile: 'plop-templates/smart-module/module.style.ts.hbs',
-            },
-            {
-                type: 'add',
-                path:
-                    'src/components/module/{{pascalCase name}}/{{pascalCase name}}.view.tsx',
-                templateFile: 'plop-templates/smart-module/module.view.tsx.hbs',
-            },
-            {
-                type: 'add',
-                path:
-                    'src/components/module/{{pascalCase name}}/{{pascalCase name}}.container.tsx',
-                templateFile: 'plop-templates/smart-module/module.container.tsx.hbs',
-            },
-            {
-                type: 'add',
-                path: '.storybook/stories/module/{{pascalCase name}}.js',
-                templateFile: 'plop-templates/smart-module/module.story.js.hbs',
-            },
-        ],
-    });
     plop.setGenerator('layout', {
         description: 'Create a layout component',
         prompts: [
