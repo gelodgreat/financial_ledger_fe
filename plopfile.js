@@ -32,11 +32,6 @@ module.exports = (plop) => {
                     'src/components/base/{{pascalCase name}}/{{pascalCase name}}.view.tsx',
                 templateFile: 'plop-templates/base/base.view.tsx.hbs',
             },
-            {
-                type: 'add',
-                path: '.storybook/stories/base/{{pascalCase name}}.js',
-                templateFile: 'plop-templates/base/base.story.js.hbs',
-            },
         ],
     });
     plop.setGenerator('module', {
@@ -71,11 +66,6 @@ module.exports = (plop) => {
                 path:
                     'src/components/module/{{pascalCase name}}/{{pascalCase name}}.view.tsx',
                 templateFile: 'plop-templates/module/module.view.tsx.hbs',
-            },
-            {
-                type: 'add',
-                path: '.storybook/stories/module/{{pascalCase name}}.js',
-                templateFile: 'plop-templates/module/module.story.js.hbs',
             },
         ],
     });
@@ -117,11 +107,6 @@ module.exports = (plop) => {
                 path:
                     'src/components/layout/{{pascalCase name}}/{{pascalCase name}}.container.tsx',
                 templateFile: 'plop-templates/layout/layout.container.tsx.hbs',
-            },
-            {
-                type: 'add',
-                path: '.storybook/stories/layout/{{pascalCase name}}.js',
-                templateFile: 'plop-templates/layout/layout.story.js.hbs',
             },
         ],
     });
@@ -184,20 +169,6 @@ module.exports = (plop) => {
                 pattern: '/* PLOP_INJECT_IMPORT */',
                 template:
                     "export { default as {{pascalCase name}} } from './{{pascalCase name}}';",
-            },
-            {
-                type: 'append',
-                path: '.storybook/stories/base/SVG.js',
-                pattern: '/* PLOP_INJECT_IMPORT */',
-                template: '  {{pascalCase name}},',
-            },
-            {
-                type: 'append',
-                path: '.storybook/stories/base/SVG.js',
-                pattern: '{/* PLOP_INJECT_INSTANCE*/}',
-                template: `        <Wrapper label="{{pascalCase name}}">
-            <{{pascalCase name}} width={30} height={30} />
-          </Wrapper>`,
             },
         ],
     });
