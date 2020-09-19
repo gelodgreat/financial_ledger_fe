@@ -110,40 +110,40 @@ module.exports = (plop) => {
             },
         ],
     });
-    plop.setGenerator('route', {
-        description: 'Create a route component',
+    plop.setGenerator('app', {
+        description: 'Create an app component',
         prompts: [
             {
                 type: 'input',
                 name: 'name',
-                message: 'What is your route name?',
+                message: 'What is your app component name?',
             },
         ],
         actions: [
             {
                 type: 'add',
-                path: 'src/routes/{{pascalCase name}}/index.tsx',
+                path: 'src/routes/App/{{pascalCase name}}/index.tsx',
                 templateFile: 'plop-templates/route/index.tsx.hbs',
             },
             {
                 type: 'add',
-                path: 'src/routes/{{pascalCase name}}/{{pascalCase name}}.props.ts',
+                path: 'src/routes/App/{{pascalCase name}}/{{pascalCase name}}.props.ts',
                 templateFile: 'plop-templates/route/route.props.ts.hbs',
             },
             {
                 type: 'add',
-                path: 'src/routes/{{pascalCase name}}/{{pascalCase name}}.style.ts',
+                path: 'src/routes/App/{{pascalCase name}}/{{pascalCase name}}.style.ts',
                 templateFile: 'plop-templates/route/route.style.ts.hbs',
             },
             {
                 type: 'add',
-                path: 'src/routes/{{pascalCase name}}/{{pascalCase name}}.view.tsx',
+                path: 'src/routes/App/{{pascalCase name}}/{{pascalCase name}}.view.tsx',
                 templateFile: 'plop-templates/route/route.view.tsx.hbs',
             },
             {
                 type: 'add',
                 path:
-                    'src/routes/{{pascalCase name}}/{{pascalCase name}}.container.tsx',
+                    'src/routes/App/{{pascalCase name}}/{{pascalCase name}}.container.tsx',
                 templateFile: 'plop-templates/route/route.container.tsx.hbs',
             },
         ],

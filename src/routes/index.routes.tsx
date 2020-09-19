@@ -9,13 +9,22 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { Routes } from 'types/Routes';
-
 export const ROUTES: Routes = {
   ROOT: {
     path: MAIN_ROUTES.LANDING,
+    children: <h1>Landing Page if it exists</h1>,
   },
-  APP_LOGIN: {
+  LOGIN: {
     path: APP_ROUTES.LOGIN,
+    children: <h1>Login</h1>,
+  },
+  REGISTER: {
+    path: APP_ROUTES.REGISTER,
+    children: <h1>Register</h1>,
+  },
+  FORGOT_PASSWORD: {
+    path: APP_ROUTES.FORGOT_PASSWORD,
+    children: <h1>Forgot Password</h1>,
   },
   //nested routes
   //     APP: {
@@ -25,9 +34,9 @@ export const ROUTES: Routes = {
 
 const RoutesComponent = (): JSX.Element => {
   const history = useHistory();
-  const location = useLocation();
-  const currentPath = location.pathname;
-  const isAuthenticated = true; //will be used for authentication
+  // const location = useLocation();
+  // const currentPath = location.pathname;
+  const isAuthenticated = false; //will be used for authentication
   return (
     <Switch>
       {Object.values(ROUTES).map((route) => {
