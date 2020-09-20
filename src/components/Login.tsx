@@ -2,15 +2,11 @@ import React,{Component} from 'react';
 import {FirebaseAuthProvider, FirebaseAuthConsumer} from '@react-firebase/auth';
 import firebase from 'firebase/app';
 import config from 'Firebase/config';
-import {FirebaseGoogleLogin} from '..//Firebase/functions';
+import {FirebaseGoogleLogin} from '../Firebase/functions';
 
-interface Props{
-}
-interface State{
 
-}
 
-class Login extends Component<Props, State> {
+class Login extends Component {
 
   render(){
     return (
@@ -25,6 +21,9 @@ class Login extends Component<Props, State> {
             )}
             {!user &&(
               <>
+                <form>
+                  <button>Submit</button>
+                </form>
                 <button onClick={()=>FirebaseGoogleLogin()}>Login with Google</button>
               </>
             )}
