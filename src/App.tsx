@@ -1,27 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 
+import {
+  FirebaseAuthProvider,
+  FirebaseAuthConsumer,
+} from '@react-firebase/auth';
 import { ConnectedRouter } from 'connected-react-router';
-import { BrowserRouter, Route, Switch, Router } from 'react-router-dom';
+import firebase from 'firebase/app';
+import config from 'Firebase/config';
+import {
+  Switch,
+  Route,
+  withRouter,
+  BrowserRouter,
+  Router,
+} from 'react-router-dom';
 import Routes from 'routes/index.routes';
 import { history } from 'store';
 
-import logo from './logo.svg';
-
 import './App.css';
+
+interface Props {}
 
 function App() {
   return (
-    <React.StrictMode>
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
-
-      {/* 
-      For Redux usage
-      <ConnectedRouter history={history}>
-        <Routes />
-      </ConnectedRouter> */}
-    </React.StrictMode>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   );
 }
 
