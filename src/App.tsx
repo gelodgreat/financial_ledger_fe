@@ -6,7 +6,13 @@ import firebase from 'firebase/app';
 import config from 'Firebase/config';
 import {FirebaseGoogleLogin} from './Firebase/functions';
 
+import { ConnectedRouter } from 'connected-react-router';
+import { BrowserRouter, Route, Switch, Router } from 'react-router-dom';
+import Routes from 'routes/index.routes';
+import { history } from 'store';
+
 import logo from './logo.svg';
+
 import './App.css';
 
 interface Props{
