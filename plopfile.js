@@ -148,6 +148,44 @@ module.exports = (plop) => {
             },
         ],
     });
+    plop.setGenerator('auth', {
+        description: 'Create an app component',
+        prompts: [
+            {
+                type: 'input',
+                name: 'name',
+                message: 'What is your app component name?',
+            },
+        ],
+        actions: [
+            {
+                type: 'add',
+                path: 'src/routes/Auth/{{pascalCase name}}/index.tsx',
+                templateFile: 'plop-templates/route/index.tsx.hbs',
+            },
+            {
+                type: 'add',
+                path: 'src/routes/Auth/{{pascalCase name}}/{{pascalCase name}}.props.ts',
+                templateFile: 'plop-templates/route/route.props.ts.hbs',
+            },
+            {
+                type: 'add',
+                path: 'src/routes/Auth/{{pascalCase name}}/{{pascalCase name}}.style.ts',
+                templateFile: 'plop-templates/route/route.style.ts.hbs',
+            },
+            {
+                type: 'add',
+                path: 'src/routes/Auth/{{pascalCase name}}/{{pascalCase name}}.view.tsx',
+                templateFile: 'plop-templates/route/route.view.tsx.hbs',
+            },
+            {
+                type: 'add',
+                path:
+                    'src/routes/Auth/{{pascalCase name}}/{{pascalCase name}}.container.tsx',
+                templateFile: 'plop-templates/route/route.container.tsx.hbs',
+            },
+        ],
+    });
     plop.setGenerator('svg', {
         description: 'Create svg component and storybook entry',
         prompts: [
