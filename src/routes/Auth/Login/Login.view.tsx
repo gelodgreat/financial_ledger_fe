@@ -17,10 +17,10 @@ import {
   FirebaseAuthProvider,
   FirebaseAuthConsumer,
 } from '@react-firebase/auth';
-import { MAIN_ROUTES } from 'consts';
+import { APP_ROUTES, MAIN_ROUTES } from 'consts';
 import firebase from 'firebase/app';
 import config from 'Firebase/config';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 import { FirebaseGoogleLogin } from '../../../Firebase/functions';
 import { LoginGeneratedProps } from './Login.props';
@@ -67,8 +67,7 @@ export default function SignIn() {
           <>
             {providerId ? (
               <>
-                {user && <p>Welcome {user.displayName}</p>}
-                {!user && (
+                {!user ? (
                   <Container component="main" maxWidth="xs">
                     <CssBaseline />
                     <div className={classes.paper}>
@@ -152,6 +151,8 @@ export default function SignIn() {
                       <Copyright />
                     </Box>
                   </Container>
+                ) : (
+                  <Redirect to={{ pathname: APP_ROUTES.DASHBOARD }} />
                 )}
               </>
             ) : (

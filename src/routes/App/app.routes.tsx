@@ -29,7 +29,7 @@ const AppRoutes = (): JSX.Element => {
         </Route>
       ))}
       <Route>
-        <Redirect to="/app/financials"></Redirect>
+        <Redirect to="/app/dashboard"></Redirect>
       </Route>
     </Switch>
   );
