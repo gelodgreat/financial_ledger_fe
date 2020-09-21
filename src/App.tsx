@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 
-import {
-  FirebaseAuthProvider,
-  FirebaseAuthConsumer,
-} from '@react-firebase/auth';
+import config from 'common/config';
 import { ConnectedRouter } from 'connected-react-router';
 import firebase from 'firebase/app';
-import config from 'Firebase/config';
 import {
   Switch,
   Route,
@@ -19,7 +15,10 @@ import { history } from 'store';
 
 import './App.css';
 
+import 'firebase/auth';
+import 'firebase/database';
 interface Props {}
+firebase.initializeApp(config);
 
 function App() {
   return (
