@@ -17,8 +17,10 @@ import {
   FirebaseAuthProvider,
   FirebaseAuthConsumer,
 } from '@react-firebase/auth';
+import { MAIN_ROUTES } from 'consts';
 import firebase from 'firebase/app';
 import config from 'Firebase/config';
+import { useHistory } from 'react-router-dom';
 
 import { FirebaseGoogleLogin } from '../../../Firebase/functions';
 import { LoginGeneratedProps } from './Login.props';
@@ -57,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function SignIn() {
   const classes = useStyles();
-
+  const history = useHistory();
   return (
     <FirebaseAuthProvider {...config} firebase={firebase}>
       <FirebaseAuthConsumer>
@@ -133,7 +135,13 @@ export default function SignIn() {
                             </Link>
                           </Grid>
                           <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link
+                              href="#"
+                              variant="body2"
+                              onClick={() => {
+                                history.push(MAIN_ROUTES.REGISTER);
+                              }}
+                            >
                               {"Don't have an account? Sign Up"}
                             </Link>
                           </Grid>

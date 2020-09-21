@@ -18,6 +18,7 @@ import { Routes } from 'types/Routes';
 
 import AppRoutes from './App/app.routes';
 import Login from './Auth/Login';
+import Register from './Auth/Register';
 
 export const ROUTES: Routes = {
   ROOT: {
@@ -30,7 +31,7 @@ export const ROUTES: Routes = {
   },
   REGISTER: {
     path: MAIN_ROUTES.REGISTER,
-    children: <h1>Register</h1>,
+    children: <Register />,
   },
   FORGOT_PASSWORD: {
     path: MAIN_ROUTES.FORGOT_PASSWORD,
