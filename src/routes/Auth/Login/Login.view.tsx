@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-export default function SignIn() {
+function SignIn() {
   const classes = useStyles();
   const history = useHistory();
   return (
@@ -65,98 +65,90 @@ export default function SignIn() {
       <FirebaseAuthConsumer>
         {({ user, providerId }) => (
           <>
-            {providerId ? (
-              <>
-                {!user ? (
-                  <Container component="main" maxWidth="xs">
-                    <CssBaseline />
-                    <div className={classes.paper}>
-                      <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon />
-                      </Avatar>
-                      <Typography component="h1" variant="h5">
-                        Sign in
-                      </Typography>
-                      <form className={classes.form} noValidate>
-                        <TextField
-                          variant="outlined"
-                          margin="normal"
-                          required
-                          fullWidth
-                          id="email"
-                          label="Email Address"
-                          name="email"
-                          autoComplete="email"
-                          autoFocus
-                        />
-                        <TextField
-                          variant="outlined"
-                          margin="normal"
-                          required
-                          fullWidth
-                          name="password"
-                          label="Password"
-                          type="password"
-                          id="password"
-                          autoComplete="current-password"
-                        />
-                        <FormControlLabel
-                          control={
-                            <Checkbox value="remember" color="primary" />
-                          }
-                          label="Remember me"
-                        />
-                        <Button
-                          type="submit"
-                          fullWidth
-                          variant="contained"
-                          color="primary"
-                          className={classes.submit}
-                        >
-                          Sign In
-                        </Button>
-                        <Button
-                          type="button"
-                          fullWidth
-                          variant="contained"
-                          color="primary"
+            {!user ? (
+              <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <div className={classes.paper}>
+                  <Avatar className={classes.avatar}>
+                    <LockOutlinedIcon />
+                  </Avatar>
+                  <Typography component="h1" variant="h5">
+                    Sign in
+                  </Typography>
+                  <form className={classes.form} noValidate>
+                    <TextField
+                      variant="outlined"
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="email"
+                      label="Email Address"
+                      name="email"
+                      autoComplete="email"
+                      autoFocus
+                    />
+                    <TextField
+                      variant="outlined"
+                      margin="normal"
+                      required
+                      fullWidth
+                      name="password"
+                      label="Password"
+                      type="password"
+                      id="password"
+                      autoComplete="current-password"
+                    />
+                    <FormControlLabel
+                      control={<Checkbox value="remember" color="primary" />}
+                      label="Remember me"
+                    />
+                    <Button
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                      color="primary"
+                      className={classes.submit}
+                    >
+                      Sign In
+                    </Button>
+                    <Button
+                      type="button"
+                      fullWidth
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        FirebaseGoogleLogin();
+                      }}
+                      className={classes.submit}
+                    >
+                      Login with Google
+                    </Button>
+                    <Grid container>
+                      <Grid item xs>
+                        <Link href="#" variant="body2">
+                          Forgot password?
+                        </Link>
+                      </Grid>
+                      <Grid item>
+                        <Link
+                          href="#"
+                          variant="body2"
                           onClick={() => {
-                            FirebaseGoogleLogin();
+                            history.push(MAIN_ROUTES.REGISTER);
                           }}
-                          className={classes.submit}
                         >
-                          Login with Google
-                        </Button>
-                        <Grid container>
-                          <Grid item xs>
-                            <Link href="#" variant="body2">
-                              Forgot password?
-                            </Link>
-                          </Grid>
-                          <Grid item>
-                            <Link
-                              href="#"
-                              variant="body2"
-                              onClick={() => {
-                                history.push(MAIN_ROUTES.REGISTER);
-                              }}
-                            >
-                              {"Don't have an account? Sign Up"}
-                            </Link>
-                          </Grid>
-                        </Grid>
-                      </form>
-                    </div>
-                    <Box mt={8}>
-                      <Copyright />
-                    </Box>
-                  </Container>
-                ) : (
-                  <Redirect to={{ pathname: APP_ROUTES.DASHBOARD }} />
-                )}
-              </>
+                          {"Don't have an account? Sign Up"}
+                        </Link>
+                      </Grid>
+                    </Grid>
+                  </form>
+                </div>
+                <Box mt={8}>
+                  <Copyright />
+                </Box>
+              </Container>
             ) : (
-              <p>Loading...</p>
+              <Redirect to={{ pathname: APP_ROUTES.DASHBOARD }} />
             )}
           </>
         )}
@@ -164,35 +156,5 @@ export default function SignIn() {
     </FirebaseAuthProvider>
   );
 }
-// const LoginView = (props: LoginGeneratedProps) => {
-//   return (
-// <FirebaseAuthProvider {...config} firebase={firebase}>
-//   <FirebaseAuthConsumer>
-//     {({ user, providerId }) => (
-//       <>
-//         {providerId ? (
-//           <>
-//             {user && <p>Welcome {user.displayName}</p>}
-//             {!user && (
-//               <>
-//                 <form onSubmit={() => {}}>
-//                   <input></input>
-//                   <button type="submit">Submit</button>
-//                 </form>
-//                 <button onClick={() => FirebaseGoogleLogin()}>
-//                   Login with Google
-//                 </button>
-//               </>
-//             )}
-//           </>
-//         ) : (
-//           <p>Loading...</p>
-//         )}
-//       </>
-//     )}
-//   </FirebaseAuthConsumer>
-// </FirebaseAuthProvider>
-//   );
-// };
 
-// export default LoginView;
+export default SignIn;
