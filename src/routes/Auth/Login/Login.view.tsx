@@ -1,5 +1,18 @@
 import React from 'react';
 
+import Avatar from '@material-ui/core/Avatar';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {
   FirebaseAuthProvider,
   FirebaseAuthConsumer,
@@ -9,9 +22,42 @@ import config from 'Firebase/config';
 
 import { FirebaseGoogleLogin } from '../../../Firebase/functions';
 import { LoginGeneratedProps } from './Login.props';
-import { Container } from './Login.style';
+// import { Container } from './Login.style';
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
-const LoginView = (props: LoginGeneratedProps) => {
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+export default function SignIn() {
+  const classes = useStyles();
+
   return (
     <FirebaseAuthProvider {...config} firebase={firebase}>
       <FirebaseAuthConsumer>
@@ -21,15 +67,83 @@ const LoginView = (props: LoginGeneratedProps) => {
               <>
                 {user && <p>Welcome {user.displayName}</p>}
                 {!user && (
-                  <>
-                    <form onSubmit={() => {}}>
-                      <input></input>
-                      <button type="submit">Submit</button>
-                    </form>
-                    <button onClick={() => FirebaseGoogleLogin()}>
-                      Login with Google
-                    </button>
-                  </>
+                  <Container component="main" maxWidth="xs">
+                    <CssBaseline />
+                    <div className={classes.paper}>
+                      <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon />
+                      </Avatar>
+                      <Typography component="h1" variant="h5">
+                        Sign in
+                      </Typography>
+                      <form className={classes.form} noValidate>
+                        <TextField
+                          variant="outlined"
+                          margin="normal"
+                          required
+                          fullWidth
+                          id="email"
+                          label="Email Address"
+                          name="email"
+                          autoComplete="email"
+                          autoFocus
+                        />
+                        <TextField
+                          variant="outlined"
+                          margin="normal"
+                          required
+                          fullWidth
+                          name="password"
+                          label="Password"
+                          type="password"
+                          id="password"
+                          autoComplete="current-password"
+                        />
+                        <FormControlLabel
+                          control={
+                            <Checkbox value="remember" color="primary" />
+                          }
+                          label="Remember me"
+                        />
+                        <Button
+                          type="submit"
+                          fullWidth
+                          variant="contained"
+                          color="primary"
+                          className={classes.submit}
+                        >
+                          Sign In
+                        </Button>
+                        <Button
+                          type="button"
+                          fullWidth
+                          variant="contained"
+                          color="primary"
+                          onClick={() => {
+                            FirebaseGoogleLogin();
+                          }}
+                          className={classes.submit}
+                        >
+                          Login with Google
+                        </Button>
+                        <Grid container>
+                          <Grid item xs>
+                            <Link href="#" variant="body2">
+                              Forgot password?
+                            </Link>
+                          </Grid>
+                          <Grid item>
+                            <Link href="#" variant="body2">
+                              {"Don't have an account? Sign Up"}
+                            </Link>
+                          </Grid>
+                        </Grid>
+                      </form>
+                    </div>
+                    <Box mt={8}>
+                      <Copyright />
+                    </Box>
+                  </Container>
                 )}
               </>
             ) : (
@@ -40,6 +154,36 @@ const LoginView = (props: LoginGeneratedProps) => {
       </FirebaseAuthConsumer>
     </FirebaseAuthProvider>
   );
-};
+}
+// const LoginView = (props: LoginGeneratedProps) => {
+//   return (
+// <FirebaseAuthProvider {...config} firebase={firebase}>
+//   <FirebaseAuthConsumer>
+//     {({ user, providerId }) => (
+//       <>
+//         {providerId ? (
+//           <>
+//             {user && <p>Welcome {user.displayName}</p>}
+//             {!user && (
+//               <>
+//                 <form onSubmit={() => {}}>
+//                   <input></input>
+//                   <button type="submit">Submit</button>
+//                 </form>
+//                 <button onClick={() => FirebaseGoogleLogin()}>
+//                   Login with Google
+//                 </button>
+//               </>
+//             )}
+//           </>
+//         ) : (
+//           <p>Loading...</p>
+//         )}
+//       </>
+//     )}
+//   </FirebaseAuthConsumer>
+// </FirebaseAuthProvider>
+//   );
+// };
 
-export default LoginView;
+// export default LoginView;

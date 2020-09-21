@@ -16,6 +16,7 @@ import {
 } from 'react-router-dom';
 import { Routes } from 'types/Routes';
 
+import AppRoutes from './App/app.routes';
 import Login from './Auth/Login';
 
 export const ROUTES: Routes = {
@@ -36,9 +37,12 @@ export const ROUTES: Routes = {
     children: <h1>Forgot Password</h1>,
   },
   //nested routes
-  //     APP: {
-  //       path:
-  //   }
+  APP: {
+    path: APP_ROUTES.ROOT,
+    children: <AppRoutes />,
+    nested: true,
+    protected: true,
+  },
 };
 
 const RoutesComponent = (): JSX.Element => {
@@ -58,8 +62,8 @@ const RoutesComponent = (): JSX.Element => {
                     path={route.path}
                     exact={!route.nested}
                   >
-                    {!user && !providerId ? (
-                      <Redirect to={{ pathname: MAIN_ROUTES.LANDING }} />
+                    {!user && route.protected ? (
+                      <Redirect to={{ pathname: MAIN_ROUTES.LOGIN }} />
                     ) : (
                       route.children
                     )}
