@@ -8,7 +8,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
-import Link from '@material-ui/core/Link';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -20,7 +19,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import clsx from 'clsx';
-import firebase from 'firebase/app';
+import { Copyright } from 'components/base';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Routes, Route as TRoute } from 'types/Routes';
 
@@ -119,18 +118,6 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
 }));
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const ROUTES_ARRAY: TRoute[] = Object.values(ROUTES).map((value) => value);
 const AppRoutes = (): JSX.Element => {
@@ -217,9 +204,7 @@ const AppRoutes = (): JSX.Element => {
               <Redirect to="/app/dashboard" />
             </Route>
           </Switch>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
+          <Copyright />
         </Container>
       </main>
     </div>
